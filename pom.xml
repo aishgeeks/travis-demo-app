@@ -40,6 +40,8 @@
 						<objectStore>true</objectStore>
 					</cloudHubDeployment>
 				</configuration>
+				
+				
 			</plugin>
 		</plugins>
 	</build>
