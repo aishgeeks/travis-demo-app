@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="9a420a89-4653-4c9a-8067-2fdc7ceadf4d" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="fceb2d69-771f-4c07-b0b9-15ec7a45d73b" fetchAllApexSoapMetadata="true" fetchAllApexRestMetadata="true">
+		<salesforce:basic-connection username="piyush.c.jain@informa.com.ap.devvikas" password="Girikon!2022pi" securityToken="DyyJ81nVhSaZExU8db0PdbitN" url="https://taylorandfrancis--devvikas.my.salesforce.com/services/Soap/u/48" />
+	</salesforce:sfdc-config>
+	<flow name="demosalesforceFlow" doc:id="ba9ff056-5f60-495a-b242-02f5c73f7f6f" >
+		<http:listener doc:name="Listener" doc:id="c49b9fb0-8704-4368-9151-88b1be4b43f8" config-ref="HTTP_Listener_config" path="/test/{command}" outputMimeType="application/json" allowedMethods="POST"/>
+		
+		<ee:transform doc:name="Transform Message" doc:id="8875dc9f-6ba5-423a-8fa0-e9b1daf8b3f0" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	body : payload,
+	/*queryParams: attributes.uriParams */
+	queryParams: attributes.queryParams,
+	uriParams: attributes.uriParams.'command'
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		
+		<logger level="INFO" doc:name="Logger" doc:id="64be8623-d996-48b7-95d3-ce4816662d2f" message="#[payload]"/>
+		<set-variable value="#[payload.uri]" doc:name="Set Variable" doc:id="4d808c58-46ee-4639-84d1-8897258bea7b" variableName="uriParam"/>
+		<salesforce:invoke-apex-rest-method doc:name="Invoke apex rest method" doc:id="82872bbf-c429-4108-8739-a25ecbcb80ca" config-ref="Salesforce_Config" className="TF_QuoteAPIService" methodName='doPost^/QuoteServicetest/*^HttpPost^string^'>
+		</salesforce:invoke-apex-rest-method>
+		<ee:transform doc:name="Transform Message" doc:id="d520eaef-341c-4e1d-8b0e-c6641a4d3945">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="6bc6e946-6c4f-46bd-b0f0-742fcdceee5d" message="#[payload]"/>
+	</flow>
+	<flow name="demosalesforceFlow1" doc:id="6be5961b-8cc1-43ed-a434-5e19d5a9e59d" >
+		<http:listener doc:name="Listener" doc:id="c28062fd-5c56-4e42-b5f0-b09ffcac3360" config-ref="HTTP_Listener_config" path="/getquote-query" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Logger" doc:id="fd3d841a-de2e-444d-bbfd-3a8e0b741825" message='#["Flow Started"]'/>
+		<salesforce:query doc:name="Query" doc:id="f3b00450-293b-4cce-9e7a-f43c923fc902" config-ref="Salesforce_Config">
+			<salesforce:salesforce-query ><![CDATA[SELECT Id,Name,SBQQ__EndDate__c FROM SBQQ__Quote__c LIMIT 10]]></salesforce:salesforce-query>
+		</salesforce:query>
+		<ee:transform doc:name="Transform Message" doc:id="d7fc2ba5-858a-4018-8e86-4aa7c3721934" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="9ff73850-49fc-407b-a72d-c903bee7157c" message="payload"/>
+	</flow>
+</mule>
