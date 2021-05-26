@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="Example" format="json">
+      <types:shape format="weave" example="examples/example.json"><![CDATA[%dw 2.0
+
+type Example = {|
+  totalDiscountPercentage: Number {"typeId": "int"}, 
+  totalDiscountAmount: Number {"typeId": "int"}, 
+  success: Boolean, 
+  status: String, 
+  serviceName: String, 
+  quoteUniqueID: String, 
+  quoteRequest: {|
+    website: Null, 
+    vatNumber: Null, 
+    taxRegistrationNumber: Null, 
+    taxCategory: Null, 
+    submissionID: String, 
+    shipToStreet2: Null, 
+    shipToStreet: Null, 
+    shipToStateISO: Null, 
+    shipToState: Null, 
+    shipToPostalCode: Null, 
+    shipToOrganization: Null, 
+    shipToCountry: String, 
+    shipToContact: String, 
+    shipToCity: Null, 
+    shippingBPNumber: Null, 
+    shippingAddressID: Null, 
+    sameAsBilling: Boolean, 
+    requestID: Null, 
+    reasonForDiscreantionaryWaiver: Null, 
+    purchaseOrderNumber: Null, 
+    promoCode: Null, 
+    productCode: String, 
+    payerType: String, 
+    payerPartyID: Null, 
+    payerOrganizationRingoldID: Null, 
+    payerOrganizationName: Null, 
+    payerOrganizationID: Null, 
+    payerOrganizationDepartment: Null, 
+    payerOrganizationCampus: Null, 
+    payerLastName: Null, 
+    payerFirstName: Null, 
+    payerEmailID: String, 
+    payercontactphonenumber: Null, 
+    payerContactName: String, 
+    needsManualApproval: Boolean, 
+    manuscriptID: Null, 
+    leadPrimaryContactPhoneNumber: Null, 
+    leadAuthorPartyID: Null, 
+    leadAuthorOrganizationRingoldID: Null, 
+    leadAuthorOrganizationName: String, 
+    leadAuthorOrganizationID: String, 
+    leadAuthorOrganizationDepartment: Null, 
+    leadAuthorOrganizationCampus: Null, 
+    leadAuthorName: String, 
+    leadAuthorEmailID: String, 
+    journalCode: Null, 
+    isAuthorAccepted: Boolean, 
+    isArticleAccepted: Boolean, 
+    entryPoint: String, 
+    doi: Null, 
+    discreationaryWaiverStatus: Null, 
+    disableRejectionEmail: Boolean, 
+    disableQuoteCreationNotificationEmailToAuthor: Boolean, 
+    disablePrePayManualApprovalCase: Boolean, 
+    disablePrePayApprovalNotificationEmailToAuthor: Boolean, 
+    countryCode: String, 
+    canUsePrepayBudget: Boolean, 
+    canApplyCountryDiscount: Boolean, 
+    billingStreet2: Null, 
+    billingStreet: Null, 
+    billingStateISO: Null, 
+    billingState: Null, 
+    billingCountry: String, 
+    billingCity: Null, 
+    billingBPNumber: Null, 
+    billingAddressID: Null, 
+    bilingPostalCode: Null, 
+    authorFacingArticleType: String, 
+    articleType: String, 
+    articelTitle: String
+  |}, 
+  quoteNumber: String, 
+  quoteId: String, 
+  productOpenAccessCategory: String, 
+  netAmount: Number {"typeId": "int"}, 
+  listAmount: Number {"typeId": "int"}, 
+  journalName: String, 
+  isPriceRuleAppled: Boolean, 
+  invoiceStatus: Null, 
+  invoiceNumber: Null, 
+  errorMessage: Null, 
+  discountDisplayName: String, 
+  currencyIsoCode: String, 
+  CSDApprovalStatus: Null, 
+  articleType: String, 
+  APCPriceCategory: String
+|} {"example": "{\\\"totalDiscountPercentage\\\":100,\\\"totalDiscountAmount\\\":1640,\\\"success\\\":true,\\\"status\\\":\\\"Draft\\\",\\\"serviceName\\\":\\\"Open Access Fee\\\",\\\"quoteUniqueID\\\":\\\"fwk8ZRSootq8MTKlqTAHaeklH\\\",\\\"quoteRequest\\\":{\\\"website\\\":null,\\\"vatNumber\\\":null,\\\"taxRegistrationNumber\\\":null,\\\"taxCategory\\\":null,\\\"submissionID\\\":\\\"217350720\\\",\\\"shipToStreet2\\\":null,\\\"shipToStreet\\\":null,\\\"shipToStateISO\\\":null,\\\"shipToState\\\":null,\\\"shipToPostalCode\\\":null,\\\"shipToOrganization\\\":null,\\\"shipToCountry\\\":\\\"Afghanistan\\\",\\\"shipToContact\\\":\\\"undefined undefined\\\",\\\"shipToCity\\\":null,\\\"shippingBPNumber\\\":null,\\\"shippingAddressID\\\":null,\\\"sameAsBilling\\\":true,\\\"requestID\\\":null,\\\"reasonForDiscreantionaryWaiver\\\":null,\\\"purchaseOrderNumber\\\":null,\\\"promoCode\\\":null,\\\"productCode\\\":\\\"ZEPT\\\",\\\"payerType\\\":\\\"Self\\\",\\\"payerPartyID\\\":null,\\\"payerOrganizationRingoldID\\\":null,\\\"payerOrganizationName\\\":null,\\\"payerOrganizationID\\\":null,\\\"payerOrganizationDepartment\\\":null,\\\"payerOrganizationCampus\\\":null,\\\"payerLastName\\\":null,\\\"payerFirstName\\\":null,\\\"payerEmailID\\\":\\\"vinay.c.cp@informa.com\\\",\\\"payercontactphonenumber\\\":null,\\\"payerContactName\\\":\\\"VINAY FIRST NAME CP LAST NAME\\\",\\\"needsManualApproval\\\":false,\\\"manuscriptID\\\":null,\\\"leadPrimaryContactPhoneNumber\\\":null,\\\"leadAuthorPartyID\\\":null,\\\"leadAuthorOrganizationRingoldID\\\":null,\\\"leadAuthorOrganizationName\\\":\\\"Siddaganga Institute of Technology\\\",\\\"leadAuthorOrganizationID\\\":\\\"0010Y00000v3NNXQA2\\\",\\\"leadAuthorOrganizationDepartment\\\":null,\\\"leadAuthorOrganizationCampus\\\":null,\\\"leadAuthorName\\\":\\\"VINAY FIRST NAME CP LAST NAME\\\",\\\"leadAuthorEmailID\\\":\\\"vinay.c.cp@informa.com\\\",\\\"journalCode\\\":null,\\\"isAuthorAccepted\\\":false,\\\"isArticleAccepted\\\":false,\\\"entryPoint\\\":\\\"Submission Portal\\\",\\\"doi\\\":null,\\\"discreationaryWaiverStatus\\\":null,\\\"disableRejectionEmail\\\":false,\\\"disableQuoteCreationNotificationEmailToAuthor\\\":true,\\\"disablePrePayManualApprovalCase\\\":false,\\\"disablePrePayApprovalNotificationEmailToAuthor\\\":false,\\\"countryCode\\\":\\\"AF\\\",\\\"canUsePrepayBudget\\\":false,\\\"canApplyCountryDiscount\\\":true,\\\"billingStreet2\\\":null,\\\"billingStreet\\\":null,\\\"billingStateISO\\\":null,\\\"billingState\\\":null,\\\"billingCountry\\\":\\\"Afghanistan\\\",\\\"billingCity\\\":null,\\\"billingBPNumber\\\":null,\\\"billingAddressID\\\":null,\\\"bilingPostalCode\\\":null,\\\"authorFacingArticleType\\\":\\\"Basic Research Article\\\",\\\"articleType\\\":\\\"Full rate\\\",\\\"articelTitle\\\":\\\"manuscript\\\"},\\\"quoteNumber\\\":\\\"Q-64371\\\",\\\"quoteId\\\":\\\"a1y1x00000DDf6Q\\\",\\\"productOpenAccessCategory\\\":\\\"Open\\\",\\\"netAmount\\\":0,\\\"listAmount\\\":1640,\\\"journalName\\\":\\\"European Journal of Psychotraumatology\\\",\\\"isPriceRuleAppled\\\":true,\\\"invoiceStatus\\\":null,\\\"invoiceNumber\\\":null,\\\"errorMessage\\\":null,\\\"discountDisplayName\\\":\\\"Taylor & Francis Waiver Program\\\",\\\"currencyIsoCode\\\":\\\"USD\\\",\\\"CSDApprovalStatus\\\":null,\\\"articleType\\\":\\\"Full rate\\\",\\\"APCPriceCategory\\\":\\\"Standard\\\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#d520eaef-341c-4e1d-8b0e-c6641a4d3945">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="Example"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
