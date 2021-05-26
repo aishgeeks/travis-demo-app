@@ -30,13 +30,12 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<executions>
-                        <execution>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                	<execution>
+                    	<goals>
+                        	<goal>Test</goal>
+                   		</goals>
+                    </execution>
+               </executions>
 				<configuration>
 					<cloudHubDeployment>
 						<server>${server}</server>
