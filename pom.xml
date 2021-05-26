@@ -38,6 +38,7 @@
 						<muleVersion>${muleVersion}</muleVersion>
 						<applicationName>${appName}</applicationName>
 						<objectStoreV2>true</objectStoreV2>
+						
 					</cloudHubDeployment>
 				</configuration>
 				
