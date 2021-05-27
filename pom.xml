@@ -29,13 +29,6 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
-				<executions>
-                	<execution>
-                    	<goals>
-                        	<goal>Test</goal>
-                   		</goals>
-                    </execution>
-               </executions>
 				<configuration>
 					<cloudHubDeployment>
 						<server>${server}</server>
